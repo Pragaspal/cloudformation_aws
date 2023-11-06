@@ -1,0 +1,13 @@
+Parameters:
+  test:
+    Type: String
+    
+Resources:
+  EC2Instance01:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      InstanceType: t2.micro
+      ImageId: ami-0e8a34246278c21e4
+      Tags:
+        - Key : "Name"
+          Value: "MyFirstInstance"

@@ -1,0 +1,30 @@
+Parameters:
+  test:
+    Type: String
+    
+Resources:
+  EC2Instance01:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      InstanceType: t2.micro
+      ImageId: ami-0e8a34246278c21e4
+      Tags:
+        - Key : "Name"
+          Value: !Join ["-", [my, inst, is, from, cloudfromation]]
+      SecurityGroups:
+        - !Ref VprofileSG
+   
+  VprofileSG:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Allow ssh & http from MyIP
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: 80
+        ToPort: 80
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 22
+        ToPort: 22
+        CidrIp: 183.83.39.124/32
+        
